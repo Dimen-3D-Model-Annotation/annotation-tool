@@ -24,7 +24,6 @@ module.exports = {
         '24px': '24px', 
         '30px': '30px',
         
-        
       },
     },
   },
