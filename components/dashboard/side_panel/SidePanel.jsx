@@ -3,35 +3,46 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import MenuTab from './MenuTab';
 import Menu from './Menu';
+import ProCard from './ProCard';
+import MenuTab from './MenuTab';
 
 
 
 
-const SidePanel = () => {
+export default function SidePanel () {
 
     const [isActive , setIsActive] = useState('');
   
     return (
         <div className="flex">
             
-        <div className="fixed top-0 left-0 h-full transition-transform transform translate-x-0 bg-base w-72 ">
+            <div className="fixed left-0 h-full bg-base w-72 ">
+                    
+                <div className="p-6 text-white">
+                    
+                    {/* <h2 className="mb-8 font-semibold text-14px">Siyara Wijewardane</h2> */}
+                    <div className='overflow-y-auto max-h-72 hide-scrollbar'>
+                        <Menu />
+                        
+                    </div>
+                    <div className='mb-8'>
+                        <ProCard />
+                        
+                    </div>
+                    <div>
+
+                        <MenuTab to="/" image="./assets/icons/trash.svg" text = "Trash" />
+                        <MenuTab to="/" image="./assets/icons/help.svg" text = "Help & Support" />
+                        
+                    </div>
+                    
+                </div>
                 
-            <div className="p-6 text-white">
-                
-                <h2 className="mb-16 font-semibold text-14px">Siyara Wijewardane</h2>
-                
-                <Menu />
             </div>
-            
-        </div>
-        
-        
-        
+       
         </div>
     );
     };
 
-    export default SidePanel;
-
+   

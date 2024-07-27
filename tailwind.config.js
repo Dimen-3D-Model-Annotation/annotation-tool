@@ -11,8 +11,9 @@ module.exports = {
 
         hover: 'rgba(211, 211, 211, 0.1)',
         base: 'rgb(17, 24, 39)',
-        primary: 'rgb(18, 19, 22)',
-        secondary:'rgb(150, 150, 150)'
+        theme1: 'rgb(106, 0, 255)',
+        hover2 : 'rgb(88, 0, 204)',
+        gray : 'rgb(212, 211, 209)',
         
       },
 

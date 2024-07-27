@@ -15,7 +15,7 @@ export default function Tab({ to, content }) {
         onMouseLeave={() => setIsHovered(false)}
       >
         <div className="w-full overflow-hidden whitespace-nowrap">
-          {content}
+          {content} <div className=""></div>
         </div>
     
         {isHovered && (
