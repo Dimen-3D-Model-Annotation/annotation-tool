@@ -1,10 +1,7 @@
-import { Roboto } from "next/font/google";
+import { Inter } from "next/font/google";
 import "@styles/globals.css";
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "700"], 
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Dimen - Annotation Tool",
@@ -14,12 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <main>
-          {children}
-        </main>
-      </body>
-      
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }

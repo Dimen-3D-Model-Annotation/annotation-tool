@@ -1,13 +1,11 @@
-import Tab from "@components/tab_bar/Tab";
+
+import TabBar from "@components/tab_bar/TabBar";
 
 export default function Dashboard() {
   return (
-    <div className="flex">
+    <div >
       
-      <Tab to="/dashboard" content = "Dashboard" />
-      <Tab to="/" content = "Project 1" />
-      <Tab to="/dashboard" content = "Project 2" />
-      
+     <TabBar/>
       
     </div>
   );

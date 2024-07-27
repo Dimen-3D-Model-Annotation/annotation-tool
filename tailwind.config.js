@@ -8,13 +8,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'rgb(18, 19, 22)',
-        secondary:'rgb(150, 150, 150)'
+
+        hover: 'rgba(211, 211, 211, 0.1)',
+        base: 'rgb(17, 24, 39)',
+        theme1: 'rgb(106, 0, 255)',
+        hover2 : 'rgb(88, 0, 204)',
+        gray : 'rgb(212, 211, 209)',
+        
       },
+
       fontSize: {
-        '11px': '13px',
+        '10px' :'10px', 
+        '11px': '11px', 
+        '12px': '12px', 
+        '14px': '14px',     
+        '16px': '16px', 
+        '18px': '18px',
+        '20px': '20px',
+        '24px': '24px', 
+        '30px': '30px',
+        
+
+        
       },
-      
     },
   },
   plugins: [],
