@@ -8,17 +8,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+
+        hover: 'rgba(211, 211, 211, 0.1)',
+        base: 'rgb(17, 24, 39)',
         primary: 'rgb(18, 19, 22)',
         secondary:'rgb(150, 150, 150)'
+        
       },
+
       fontSize: {
-        '11px': '13px',
+        '10px' :'10px', 
+        '11px': '11px', 
+        '12px': '12px', 
+        '14px': '14px',     
+        '16px': '16px', 
+        '18px': '18px',
+        '20px': '20px',
+        '24px': '24px', 
+        '30px': '30px',
+        
+
+        
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+      
     },
   },
   plugins: [],
