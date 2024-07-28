@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Account(){
     return(
-        <div className="flex items-center py-4 bg-base">
+        <Link href= "/" className="flex items-center py-4 bg-base">
             <div className="flex gap-4 ml-8">
                 <div >
                     <Image 
@@ -45,6 +46,6 @@ export default function Account(){
 
             </div>
 
-        </div>
+        </Link>
     );
 }
