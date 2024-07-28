@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Menu(){
     return(
         <div>
-            <div className="mt-8 mb-16">
+            <div className="mt-4 mb-16">
                 <ul>
                     
                     <li ><MenuTab to="/" image = "./assets/icons/home.svg" text = "Home" /></li>
