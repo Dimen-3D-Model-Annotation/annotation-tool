@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function DropDown({ to , text , image}){
     return(
-        <Link href= {to} className="block px-4 py-2 text-14px text-gray font-14px bg-base hover:opacity-90">
+        <Link href= {to} className="block px-4 py-2 text-14px text-gray font-14px bg-base hover:bg-hovergray">
            <div className="flex items-center gap-8">
             <div className="">
                     <Image 

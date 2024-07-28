@@ -56,7 +56,7 @@ export default function Account(){
             </Link>
 
             {dropdownOpen && (
-                <div className="absolute right-0 z-10 w-64 rounded-lg shadow-lg bg-hover border:none">
+                <div className="absolute right-0 z-10 w-64 border-b-2 shadow-lg border-x-2 bg-hover border-hovergray">
                     <ul className="">
                         <li>
                             <DropDown to ="/" text="Account Settings" image="./assets/icons/settings.svg"/>
@@ -67,7 +67,7 @@ export default function Account(){
                         </li>
                         
                     </ul>
-                    <hr className="text-base opacity-90" />
+                    <hr className="text-hovergray opacity-90" />
                     <div >
                         <DropDown to ="/" text="Log out" image="./assets/icons/logout.svg"/>
                     </div>

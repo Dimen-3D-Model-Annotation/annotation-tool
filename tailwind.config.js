@@ -15,6 +15,8 @@ module.exports = {
         hover2 : 'rgb(88, 0, 204)',
         gray : 'rgb(212, 211, 209)',
         lightgray : 'rgba(128, 128, 128, 0.1)',
+        hovergray :'rgb(30, 40, 40)',
+
         
       },
 
