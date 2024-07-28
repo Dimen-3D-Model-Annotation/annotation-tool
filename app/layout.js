@@ -1,7 +1,10 @@
 import { Inter } from "next/font/google";
 import "@styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ 
+  subsets: ["latin"],
+  weights: ["400", "600", "700"], 
+});
 
 export const metadata = {
   title: "Dimen - Annotation Tool",
