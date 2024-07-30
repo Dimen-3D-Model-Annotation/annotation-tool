@@ -23,7 +23,7 @@ export default function Account(){
                 <div className="flex gap-4 ml-8">
                     <div >
                         <Image 
-                            src="./assets/images/profile.svg"
+                            src="../assets/images/profile.svg"
                             alt="Profile"
                             width={30}
                             height={30}
@@ -42,7 +42,7 @@ export default function Account(){
                 
                 <div className="mr-8">
                     <Image 
-                        src="./assets/icons/drop.svg"
+                        src="../assets/icons/drop.svg"
                         alt=""
                         width={20}
                         height={20}
@@ -59,17 +59,17 @@ export default function Account(){
                 <div className="absolute right-0 z-10 w-64 border-b-2 shadow-lg border-x-2 bg-hover border-hovergray">
                     <ul className="">
                         <li>
-                            <DropDown to ="/" text="Account Settings" image="./assets/icons/settings.svg"/>
+                            <DropDown to ="/" text="Account Settings" image="../assets/icons/settings.svg"/>
                         </li>
                         <li>
-                            <DropDown to ="/" text="Add another account" image="./assets/icons/plus.svg"/>
+                            <DropDown to ="/" text="Add another account" image="../assets/icons/plus.svg"/>
                             
                         </li>
                         
                     </ul>
                     <hr className="text-hovergray opacity-90" />
                     <div >
-                        <DropDown to ="/" text="Log out" image="./assets/icons/logout.svg"/>
+                        <DropDown to ="/" text="Log out" image="../assets/icons/logout.svg"/>
                     </div>
                     
                 </div>

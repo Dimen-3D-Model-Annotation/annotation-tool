@@ -5,12 +5,12 @@ import Image from "next/image"
 export default function MenuTab({to ,  text , image}){
     return(
         <div className="relative group">
-            <div>
-                <HoverCard />
-                
-            </div>
             
-            <Link href={to} className="flex items-center gap-4 mb-6 ml-8 bg-gray-900 group">
+                
+                
+           
+            
+            <Link href={to} className="relative flex items-center gap-4 ml-8 bg-gray-900 z-100 group">
                 <div className="" >
                     <Image 
                         src={image}
