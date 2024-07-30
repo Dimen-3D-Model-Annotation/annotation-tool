@@ -6,7 +6,7 @@ export default function ProCard() {
             <div className="flex justify-center gap-4 mb-4"> 
                 <div className="">
                     <Image 
-                        src="./assets/images/logo.svg"
+                        src="../assets/images/logo.svg"
                         alt="Dimen Logo"
                         width={20}
                         height={20}

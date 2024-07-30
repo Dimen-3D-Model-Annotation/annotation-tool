@@ -31,9 +31,12 @@ export default function SidePanel () {
                         
                     </div>
                     <div>
+                        <ul>
+                            <li className='py-3 rounded-full hover:bg-hover'><MenuTab to="/" image="../assets/icons/trash.svg" text = "Trash" /></li>
+                            <li className='py-3 rounded-full hover:bg-hover'><MenuTab to="/" image="../assets/icons/help.svg" text = "Help & Support" /></li>
+                        </ul>
 
-                        <MenuTab to="/" image="./assets/icons/trash.svg" text = "Trash" />
-                        <MenuTab to="/" image="./assets/icons/help.svg" text = "Help & Support" />
+                        
                         
                     </div>
                     
