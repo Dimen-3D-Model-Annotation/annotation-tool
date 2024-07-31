@@ -123,6 +123,43 @@ app.get('/api/teams', async (req, res) => {
   });
 
 
+  app.get('/api/user/:id', async (req, res) => {
+    const userId = req.params.id;
+    try {
+      // Replace with your database query logic
+      const user = await pool.query('SELECT email FROM dimen.users WHERE id = $1', [userId]);
+      if (user.rows.length > 0) {
+        res.json({ email: user.rows[0].email });
+      } else {
+        res.status(404).json({ error: 'User not found' });
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
+
+  app.get('/dashboard/team/:id', async (req, res) => {
+    const teamId = req.params.id;
+  
+    try {
+      // Query to fetch projects with the same team ID
+      const result = await pool.query('SELECT * FROM dimen.projects WHERE team_id = $1', [teamId]);
+  
+      // Check if any projects were found
+      if (result.rows.length > 0) {
+        res.json(result.rows);
+      } else {
+        res.status(404).json({ message: 'No projects found for this team ID.' });
+      }
+    } catch (err) {
+      console.error('Error executing query', err.stack);
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  });
+  
+
+
 
   app.post('/api/teams', async (req, res) => {
     const { name, userId, emails } = req.body;

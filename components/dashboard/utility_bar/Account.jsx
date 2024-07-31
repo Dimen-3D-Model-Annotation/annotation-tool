@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import DropDown from "./DropDown";
+import { useState , useEffect } from "react";
 
 export default function Account(){
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-
+    
     
     return(
 

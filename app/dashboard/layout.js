@@ -9,11 +9,11 @@ export default function DashboardLayOut({children}){
             <TabBar/>
             <Utils />
             <div className="flex ">
-                <div className="">
+                <div className="mt-10">
                     <SidePanel />
                 </div>
             
-            <div className="w-full h-screen mt-0 overflow-auto bg-base ml-72">{children}</div>
+            <div className="w-full h-screen mt-10 overflow-auto bg-base ml-72">{children}</div>
         </div>
 
      

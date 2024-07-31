@@ -5,8 +5,8 @@ export default function TabBar(){
         <div className="flex bg-base">
 
             <Tab to="/dashboard" content = "Dashboard" />
-            <Tab to="/" content = "Project 1" />
-            <Tab to="/dashboard" content = "Project 2" />
+            <Tab to="/" content = "Test" />
+            <Tab to="/dashboard" content = "Untitled" />
       
 
         </div>

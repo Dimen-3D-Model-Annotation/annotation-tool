@@ -1,10 +1,12 @@
 "use client"
 
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { useState , useEffect } from "react";
 
 const Modal2 = ({ isOpen, onClose }) => {
     const [userId, setUserId] = useState(null);
+    const router = useRouter();
 
   useEffect(() => {
     const getCookie = (name) => {
@@ -43,6 +45,7 @@ const Modal2 = ({ isOpen, onClose }) => {
       const result = await response.json();
       console.log('Project created:', result);
       onClose(); // Close the modal
+      router.push('/dashboard');
     } catch (error) {
       console.error('Error creating project:', error);
     }

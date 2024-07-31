@@ -80,7 +80,7 @@ export default function Dashboard() {
        {userId ? (
           projects.length > 0 ? (
             projects.map((project) => (
-              <ProjectCard key={project.id} name={project.name} />
+              <ProjectCard key={project.id} name={project.name} projectId={project.id} />
             ))
           ) : (
             <p className="font-semibold text-12px text-gray">No projects found for this user.</p>

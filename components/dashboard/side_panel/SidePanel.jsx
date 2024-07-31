@@ -17,7 +17,7 @@ export default function SidePanel () {
     return (
         <div className="flex">
             
-            <div className="fixed left-0 h-full bg-base w-72 ">
+            <div className="fixed left-0 z-20 h-full bg-base w-72 ">
                     
                 <div className="p-6 text-white">
                     
