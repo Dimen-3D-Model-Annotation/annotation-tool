@@ -2,9 +2,11 @@
 
 import axios from "axios";
 import { useState , useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const Modal = ({ isOpen, onClose }) => {
     const [userId, setUserId] = useState(null);
+    const router = useRouter();
 
   useEffect(() => {
     const getCookie = (name) => {
@@ -43,6 +45,7 @@ const Modal = ({ isOpen, onClose }) => {
       const result = await response.json();
       console.log('Project created:', result);
       onClose(); // Close the modal
+      router.push(`/dashboard/project/${result.id}`);
     } catch (error) {
       console.error('Error creating project:', error);
     }

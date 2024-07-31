@@ -58,7 +58,7 @@ export default function Menu(){
                 <ul >
                     
                     <li className="py-3 rounded-full hover:bg-hover"><MenuTab to="/dashboard" image = "../assets/icons/home.svg" text = "Home" /></li>
-                    <li className="py-3 rounded-full hover:bg-hover" ><MenuTab to="/" image = "../assets/icons/shared.svg" text = "Shared with me" /></li>
+                    <li className="py-3 rounded-full hover:bg-hover" ><MenuTab to="/dashboard/sharedwithme" image = "../assets/icons/shared.svg" text = "Shared with me" /></li>
                     <li className="py-3 rounded-full hover:bg-hover"><MenuTab to="/dashboard/notifications" image = "../assets/icons/notification.svg" text = "Notifications" /></li>
                     
                 </ul>
