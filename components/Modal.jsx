@@ -45,7 +45,7 @@ const Modal = ({ isOpen, onClose }) => {
       const result = await response.json();
       console.log('Project created:', result);
       onClose(); // Close the modal
-      router.push(`/dashboard/project/${result.id}`);
+      router.push(`/dashboard`);
     } catch (error) {
       console.error('Error creating project:', error);
     }

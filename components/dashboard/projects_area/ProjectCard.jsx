@@ -22,7 +22,7 @@ export default function ProjectCard({name , projectId}) {
   
   
   return (
-    <Link href ={`/dashboard/project/${projectId}`} >
+    <Link href ={`http://localhost:3002/dashboard/project/14`} >
        <div className="py-24 border-2 w-72 rounded-xl border-lightgray bg-hover hover:border-theme1"></div>
         <div className="w-64 mt-4 font-semibold text-gray text-12px">
           {name ? <p>{name}</p> : <p>Untitled</p>}
