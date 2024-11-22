@@ -7,52 +7,55 @@ import dimension from "@public/assets/icons/dimension.svg";
 import mention from "@public/assets/icons/mention.svg";
 import text from "@public/assets/icons/text.svg";
 
-import AddFile from "./AddFileButton";
+import ImportButton from "./ImportButton";
 
 import { useContext } from "react";
 import { CommentContext } from "@contexts/CommentContext";
+import SaveButton from "./SaveButton";
 
 const Toolbar = () => {
 
   const { setCommentMode } = useContext(CommentContext);
 
   return (
-    <div className="flex justify-center items-center w-full fixed top-2">
-      <div className="flex justify-around items-center p-2 bg-black rounded-md w-[800px] h-[56px]">
-        <AddFile />
+    <div className="flex justify-center items-center w-full fixed top-[10px] z-50">
+      <div className="flex justify-around items-center p-2 bg-black rounded-2xl w-[800px] h-[40px] mx-[10px]">
+        <ImportButton />
 
         <div className="flex justify-center items-center p-2">
-          <div className="flex justify-center items-center p-2 w-[50px] h-[50px] cursor-pointer">
+          <div className="flex justify-center items-center p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={zoom_in} alt="" />
           </div>
 
-          <div className="flex justify-center items-center mx-2 p-2 w-[50px] h-[50px] cursor-pointer">
+          <div className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={zoom_out} alt="" />
           </div>
 
-          <div className="flex justify-center items-center mx-2 p-2 w-[50px] h-[50px] cursor-pointer">
+          <div className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={rotate} alt="" />
           </div>
 
           <div
             onClick={() => setCommentMode(true)}
-            className="flex justify-center items-center mx-2 p-2 w-[50px] h-[50px] cursor-pointer"
+            className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer"
           >
             <Image src={comment} alt="" />
           </div>
 
-          <div className="flex justify-center items-center mx-2 p-2 w-[50px] h-[50px] cursor-pointer">
+          <div className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={dimension} alt="" />
           </div>
 
-          <div className="flex justify-center items-center mx-2 p-2 w-[50px] h-[50px] cursor-pointer">
+          <div className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={mention} alt="" />
           </div>
 
-          <div className="flex justify-center items-center mx-2 p-2 w-[50px] h-[50px] cursor-pointer">
+          <div className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={text} alt="" />
           </div>
         </div>
+
+        <SaveButton />
       </div>
     </div>
   );
