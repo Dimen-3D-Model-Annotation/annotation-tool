@@ -3,8 +3,8 @@ import add from "@public/assets/icons/add.svg"
 
 const LeftSidePanel = () => {
   return (
-    <div className="flex fixed top-[65px] left-[10px] flex-col justify-center items-center w-[200px] h-5/6 bg-black rounded-md p-4 overflow-y-auto">
-      <div className="flex justify-center items-center text-white w-full py-4">
+    <div className="flex fixed top-[60px] left-[10px] bottom-[10px] flex-col justify-between items-center w-[180px] bg-black rounded-2xl p-4 min-h-52">
+      <div className="flex justify-center items-center text-white w-full py-2">
         <div className="p-2 text-sm">
           <h3>Pages</h3>
         </div>
@@ -16,7 +16,7 @@ const LeftSidePanel = () => {
 
       <div className="flex justify-between items-center text-white text-sm mb-4 w-5/6">
         <h6>Pages</h6>
-        <Image src={add} className="w-[24px] cursor-pointer"/>
+        <Image src={add} className="w-[24px] cursor-pointer" alt=""/>
       </div>
 
       <div className="flex text-white text-sm w-10/12 h-[300px] overflow-y-auto">
