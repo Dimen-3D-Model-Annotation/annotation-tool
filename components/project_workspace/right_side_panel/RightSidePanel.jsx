@@ -1,7 +1,7 @@
 const RightSidePanel = () => {
   return (
-      <div className="flex fixed top-[65px] right-[10px] flex-col justify-center items-center w-[200px] h-5/6 bg-black rounded-md p-4">
-        <div className="flex justify-center items-center text-white w-full py-4">
+      <div className="flex fixed top-[60px] right-[10px] bottom-[10px] flex-col justify-between items-center w-[180px] bg-black rounded-2xl p-4 min-h-52">
+        <div className="flex justify-center items-center text-white w-full py-2">
           <div className="p-2 text-sm">
             <h3>Properties</h3>
           </div>
