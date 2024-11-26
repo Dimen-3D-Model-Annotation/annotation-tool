@@ -19,7 +19,7 @@ export default function Account(){
         >
 
             
-            <Link href= "/" className="flex items-center py-4 bg-base">
+            <Link href= "/dashboard/account" className="flex items-center py-4 bg-base">
                 <div className="flex gap-4 ml-8">
                     <div >
                         <Image 
@@ -59,7 +59,7 @@ export default function Account(){
                 <div className="absolute right-0 z-10 w-64 border-b-2 shadow-lg border-x-2 bg-hover border-hovergray">
                     <ul className="">
                         <li>
-                            <DropDown to ="/" text="Account Settings" image="../assets/icons/settings.svg"/>
+                            <DropDown to ="/dashboard/account" text="Account Settings" image="../assets/icons/settings.svg"/>
                         </li>
                         <li>
                             <DropDown to ="/" text="Add another account" image="../assets/icons/plus.svg"/>
