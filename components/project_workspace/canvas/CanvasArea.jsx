@@ -1,55 +1,59 @@
 "use client";
 
-import { useContext } from "react";
-import { FileContext } from "@contexts/FileContext";
-import { FileProvider } from "@contexts/FileContext";
+import { useContext, useState, useRef } from "react";
+import { FileContext, FileProvider } from "@contexts/FileContext";
 import { CommentContext, CommentProvider } from "@contexts/CommentContext";
 
-import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
-import { Html } from "@react-three/drei";
-import Model from "./Model";
+import { Canvas } from "@react-three/fiber";
 
-const Comment = ({ position, text }) => (
-  <mesh position={[position.x, position.y, position.z]}>
-    <Html>
-      <div className="comment">{text}</div>
-    </Html>
-  </mesh>
-);
+import Model from "./Model";
+import Comment from "./Comment";
+import CommentEditor from "../editors/CommentEditor";
 
 const CanvasArea = () => {
+
   const { filePreview } = useContext(FileContext);
+  const { comments, commentMode } = useContext(CommentContext);
+  const { clickedPoint, setClickedPoint } = useContext(CommentContext);
 
-  const { commentMode, setCommentMode, addComment, comments } = useContext(CommentContext);
+  const groupRef = useRef();
 
-  // const handleModelClick = (event) => {
-  //   if (commentMode) {
-  //     const { point } = event;
-  //     const { x, y, z } = point;
-  //     const comment = prompt("Enter your comment:");
-  //     if (comment) {
-  //       addComment({ position: { x, y, z }, text: comment });
-  //     }
-  //     setCommentMode(false);
-  //   }
-  // };
+  const handleModelClick = (point) => {
+    if (commentMode) {
+      setClickedPoint(point);
+    }
+  };
+
+  // console.log("file preview", filePreview);
+  // console.log("set clicked point", clickedPoint);
+  // console.log("comments", comments[comments.length - 1]);
 
   return (
     <FileProvider>
       <CommentProvider>
         <div className="bg-zinc-800 flex justify-center items-center min-h-screen px-[200px] pb-[10px] pt-[60px]">
           <div className="flex justify-center items-center h-[625px] w-[100%] z-10">
-            <Suspense fallback={null}>
-              {filePreview ? <Model fileUrl={filePreview} /> : null}
-              {comments.map((comment, index) => (
-                <Comment
-                  key={index}
-                  position={comment.position}
-                  text={comment.text}
-                />
-              ))}
-            </Suspense>
+            <Canvas>
+              <Suspense fallback={null}>
+                {filePreview ? (
+                  <Model fileUrl={filePreview} handleClick={handleModelClick} />
+                ) : null}
+
+                {clickedPoint && commentMode ? (
+                  <CommentEditor point={clickedPoint} />
+                ) : (
+                  comments.map((comment, index) => (
+                    <Comment
+                      key={index}
+                      position={comment.position}
+                      text={comment.text}
+                      modelRef={groupRef}
+                    />
+                  ))
+                )}
+              </Suspense>
+            </Canvas>
           </div>
         </div>
       </CommentProvider>
