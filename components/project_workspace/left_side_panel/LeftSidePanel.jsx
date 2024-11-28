@@ -16,13 +16,14 @@ const LeftSidePanel = () => {
 
       <div className="flex justify-between items-center text-white text-sm mb-4 w-5/6">
         <h6>Pages</h6>
-        <Image src={add} className="w-[24px] cursor-pointer" alt=""/>
+        <Image src={add} className="w-[24px] cursor-pointer" alt="" />
       </div>
 
       <div className="flex text-white text-sm w-10/12 h-[300px] overflow-y-auto">
         <div>
           <ul>
-            <li className="p-2">Page1</li>
+            <li className="p-2">Page 1</li>
+            <li className="p-2">Page 2</li>
           </ul>
         </div>
 
