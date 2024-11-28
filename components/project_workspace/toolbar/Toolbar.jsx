@@ -2,20 +2,16 @@ import Image from "next/image";
 import zoom_in from "@public/assets/icons/zoom_in.svg";
 import zoom_out from "@public/assets/icons/zoom_out.svg";
 import rotate from "@public/assets/icons/rotate.svg";
-import comment from "@public/assets/icons/comment.svg";
 import dimension from "@public/assets/icons/dimension.svg";
 import mention from "@public/assets/icons/mention.svg";
 import text from "@public/assets/icons/text.svg";
 
 import ImportButton from "./ImportButton";
-
-import { useContext } from "react";
-import { CommentContext } from "@contexts/CommentContext";
 import SaveButton from "./SaveButton";
 
-const Toolbar = () => {
+import CommentButton from "./CommentButton";
 
-  const { setCommentMode } = useContext(CommentContext);
+const Toolbar = () => {
 
   return (
     <div className="flex justify-center items-center w-full fixed top-[10px] z-50">
@@ -35,12 +31,7 @@ const Toolbar = () => {
             <Image src={rotate} alt="" />
           </div>
 
-          <div
-            onClick={() => setCommentMode(true)}
-            className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer"
-          >
-            <Image src={comment} alt="" />
-          </div>
+          <CommentButton />
 
           <div className="flex justify-center items-center mx-2 p-2 w-[36px] h-[36px] cursor-pointer">
             <Image src={dimension} alt="" />
