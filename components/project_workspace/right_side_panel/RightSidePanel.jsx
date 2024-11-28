@@ -14,12 +14,12 @@ const RightSidePanel = () => {
         <div className="flex text-white text-sm w-10/12 h-[300px] overflow-y-auto">
           <div>
             <ul>
-              <li className="p-2">Image1</li>
+              {/* <li className="p-2">Image1</li>
+              <li className="p-2">Image2</li> */}
+              {/* <li className="p-2">Image2</li>
               <li className="p-2">Image2</li>
               <li className="p-2">Image2</li>
-              <li className="p-2">Image2</li>
-              <li className="p-2">Image2</li>
-              <li className="p-2">Image2</li>
+              <li className="p-2">Image2</li> */}
               {/* <li className="p-2">Image2</li>
               <li className="p-2">Image2</li>
               <li className="p-2">Image2</li>
