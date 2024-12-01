@@ -5,9 +5,11 @@ import { Html } from "@react-three/drei";
 import { useContext, useState } from "react";
 import { CommentContext } from "@contexts/CommentContext";
 
-const CommentEditor = ({point}) => {
+const CommentEditor = ({ point }) => {
 
-    const { addComment, setCommentMode, commentMode } = useContext(CommentContext);
+  console.log("point", point);
+
+    const { addComment, setCommentMode, commentMode, clickedPoint } = useContext(CommentContext);
 
     const [text, setText] = useState("");
 

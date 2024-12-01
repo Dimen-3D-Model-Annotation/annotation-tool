@@ -3,15 +3,16 @@
 import Image from "next/image";
 import { useContext, useRef, useState } from "react";
 import { FileContext } from "@contexts/FileContext";
+import upload from "@api/ModelUpload";
 
 import importButton from "@public/assets/icons/import.svg";
 
 const ImportButton = () => {
 
   const fileInputRef = useRef(null);
-  const { setFilePreview } = useContext(FileContext);
+  const { setFile } = useContext(FileContext);
 
-  const handleFileChange = (event) => {
+  const handleFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     if (!selectedFile) return;
 
@@ -20,8 +21,21 @@ const ImportButton = () => {
       return;
     }
 
-    const url = URL.createObjectURL(selectedFile);
-    setFilePreview(url);
+    try {
+      const response = await upload(selectedFile);
+      console.log("Response from API Gateway:", response);
+
+      const fileUrl = response.data.file_path;
+
+      // Assuming the response contains the R2 path
+      localStorage.setItem("modelPath", fileUrl);
+      setFile(fileUrl);
+
+    } catch (error) {
+      alert("Failed to upload the file. Please try again.");
+      console.error("Error during file upload:", error);
+    }
+    
   };
 
   const handleButtonClick = () => {
