@@ -8,8 +8,14 @@ const CommentProvider = ({ children }) => {
 
   const [clickedPoint, setClickedPoint] = useState(null);
 
-  const addComment = (comment) => {
-    setComments([...comments, comment]);
+  const addComment = (newComment) => {
+    if (Array.isArray(newComment)) {
+      // Replace all comments if the input is an array
+      setComments(newComment);
+    } else {
+      // Add a single comment
+      setComments((prevComments) => [...prevComments, newComment]);
+    }
   };
 
   return (

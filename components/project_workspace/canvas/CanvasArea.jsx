@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useEffect } from "react";
 import { FileContext, FileProvider } from "@contexts/FileContext";
 import { CommentContext, CommentProvider } from "@contexts/CommentContext";
 
@@ -10,36 +10,96 @@ import { Canvas } from "@react-three/fiber";
 import Model from "./Model";
 import Comment from "./Comment";
 import CommentEditor from "../editors/CommentEditor";
+import Annotations from "./Annotations";
+
+import io from "socket.io-client";
+import axios from "axios";
+
+const socket = io("http://localhost:3500");
 
 const CanvasArea = () => {
 
-  const { filePreview } = useContext(FileContext);
-  const { comments, commentMode } = useContext(CommentContext);
-  const { clickedPoint, setClickedPoint } = useContext(CommentContext);
+  const { file, setFile } = useContext(FileContext);
+  const { comments, commentMode, addComment, setCommentMode } = useContext(CommentContext);
 
-  const groupRef = useRef();
+  useEffect(() => {
+    // Retrieve the model path from localStorage on initial load
+    const savedModelPath = localStorage.getItem("modelPath") || file;
+    if (savedModelPath) {
+      setFile(savedModelPath);
+    }
 
-  const handleModelClick = (point) => {
+
+    const fetchAnnotations = async () => {
+      try {
+        const modelComments = await axios.get(
+          `http://localhost:3500/api/annotations/${7}`
+        ); // Replace with dynamic model_id
+        addComment(modelComments.data); // Add fetched comments to state
+      } catch (error) {
+        console.error("Error fetching annotations:", error);
+      }
+    };
+
+    fetchAnnotations();
+
+    socket.on("annotation_added", (newComment) => {
+      console.log("new comment", newComment);
+      addComment(newComment);
+    });
+
+    // Clean up socket on unmount
+    return () => socket.off("annotation_added");
+  }, []);
+
+
+  const handleModelClick = async (point, normal) => {
+
     if (commentMode) {
-      setClickedPoint(point);
+      const comment = prompt("Enter your comment:");
+      setCommentMode(false);
+
+      try {
+        // Send the annotation data to the backend
+        const response = await axios.post(
+          "http://localhost:3500/api/annotations",
+          {
+            position: point,
+            normal: normal,
+            annotation_text: comment,
+            user_id: 1, // Replace with actual user ID
+            model_id: 7, // Replace with actual model ID
+          }
+        );
+
+        console.log("Annotation Response from API Gateway:", response);
+
+        const newComment = response.data;
+
+        // Emit the new annotation to other connected users via Socket.IO
+        socket.emit("annotation_added", newComment);
+
+        // Directly append the new annotation to the state
+        addComment(newComment);
+
+      } catch (error) {
+        console.error("Error saving annotation:", error);
+      }
     }
   };
 
-  // console.log("file preview", filePreview);
-  // console.log("set clicked point", clickedPoint);
-  // console.log("comments", comments[comments.length - 1]);
 
   return (
     <FileProvider>
       <CommentProvider>
-        <div className="bg-zinc-800 flex justify-center items-center min-h-screen px-[200px] pb-[10px] pt-[60px]">
-          <div className="flex justify-center items-center h-[625px] w-[100%] z-10">
+        <div className="bg-zinc-800 flex justify-center items-center min-h-screen">
+          <div className="flex justify-center items-center min-h-screen h-screen w-[100%] z-10">
             <Canvas>
               <Suspense fallback={null}>
-                {filePreview ? (
-                  <Model fileUrl={filePreview} handleClick={handleModelClick} />
+                {file ? (
+                  <Model fileUrl={file} handleClick={handleModelClick} />
                 ) : null}
-
+                {/* 
                 {clickedPoint && commentMode ? (
                   <CommentEditor point={clickedPoint} />
                 ) : (
@@ -48,10 +108,10 @@ const CanvasArea = () => {
                       key={index}
                       position={comment.position}
                       text={comment.text}
-                      modelRef={groupRef}
                     />
                   ))
-                )}
+                )} */}
+                <Annotations annotations={comments} />
               </Suspense>
             </Canvas>
           </div>

@@ -1,50 +1,84 @@
 import { Environment, useGLTF } from "@react-three/drei";
 import { OrbitControls } from "@react-three/drei";
-import { useRef, useState } from "react";
-import { useThree } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 function Model({ fileUrl, handleClick }) {
-  
-  const { scene } = useGLTF(fileUrl);
-  const ref = useRef();
 
-  const { camera, raycaster } = useThree();
-  const mouse = new THREE.Vector2();
+  const [model, setModel] = useState(null);
+  const [meshes, setMeshes] = useState([]);
 
-  const handleMouseClick = (event) => {
-    // Convert mouse position to normalized device coordinates (-1 to +1)
-    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    
-    // Set the mouse position for the raycaster
-    mouse.set(mouseX, mouseY);
-    
-    // Set the raycaster from the camera and mouse position (this automatically updates it)
-    raycaster.setFromCamera(mouse, camera);
+  useEffect(() => {
 
-    // Calculate intersections with the model
-    const intersects = getIntersections(event);
-    
-    if (intersects.length > 0) {
-      const point = intersects[0].point; // Get the clicked point
-      handleClick(point); // Pass the point to the parent component
-    }
+    const loader = new GLTFLoader();
+
+    loader.load(
+      fileUrl,
+      (glb) => {
+        const scene = glb.scene;
+        setModel(scene);
+
+        const meshArray = [];
+        scene.traverse((object) => {
+          if (object.isMesh) {
+            meshArray.push(object); // Collect meshes into an array
+          }
+        });
+        setMeshes(meshArray);
+      },
+
+      undefined,
+      (error) => {
+        console.error("Error loading model:", error);
+      }
+    );
+
+  }, []);
+
+  // console.log(nodes);
+
+  const handlePointerDown = (e) => {
+    e.stopPropagation();
+    const point = e.point; // The world-space 3D coordinates
+    handleClick(point, e.face.normal); // Pass the normal vector for visibility checks
   };
 
-  // Function to get intersection points with the model
-  const getIntersections = (event) => {
-    
-    return raycaster.intersectObject(ref.current, true);
-  };
+  // const changeColor = (mesh, color) => {
+  //   if (mesh.material) {
+  //     mesh.material.color.set(color); // Change the color of the mesh
+  //   }
+  // };
+
+  // const handleMeshClick = (mesh) => {
+  //   // Example: Change color of the clicked mesh to red
+  //   changeColor(mesh, 0xff0000);
+  // };
 
   return (
-    <mesh ref={ref} onClick={handleMouseClick}>
-      <ambientLight />
+    <>
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[0, 10, 0]} intensity={1} />
       <OrbitControls />
       <Environment preset="sunset" />
-      <primitive object={scene} />
-    </mesh>
+
+      <group dispose={null}>
+        {model && (
+          <primitive
+            object={model}
+            onPointerDown={handlePointerDown} // Add interaction to the model
+          />
+        )}
+
+        {/* {meshes.map((mesh, index) => (
+          <primitive
+            key={index}
+            object={mesh}
+            onPointerDown={() => handleMeshClick(mesh)} // Handle mesh click for color change
+          />
+        ))} */}
+      </group>
+    </>
   );
 }
 
