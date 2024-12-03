@@ -3,7 +3,7 @@
 import MenuTab from "./MenuTab";
 import Image from "next/image";
 import { useState , useEffect } from "react";
-import Modal3 from "@components/Modal3";
+import Modal3 from "@components/modals/Modal3";
 
 export default function Menu(){
     const [teams, setTeams] = useState([]);
@@ -15,7 +15,7 @@ export default function Menu(){
 
   
     useEffect(() => {
-      // Function to get user ID from cookies
+      
       const getCookie = (name) => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
@@ -57,9 +57,9 @@ export default function Menu(){
             <div className="mt-4 mb-16">
                 <ul >
                     
-                    <li className="py-3 rounded-full hover:bg-hover"><MenuTab to="/dashboard" image = "../assets/icons/home.svg" text = "Home" /></li>
-                    <li className="py-3 rounded-full hover:bg-hover" ><MenuTab to="/dashboard/sharedwithme" image = "../assets/icons/shared.svg" text = "Shared with me" /></li>
-                    <li className="py-3 rounded-full hover:bg-hover"><MenuTab to="/dashboard/notifications" image = "../assets/icons/notification.svg" text = "Notifications" /></li>
+                    <li className="py-3 rounded-full hover:bg-hover"><MenuTab to="/dashboard" image = "/assets/icons/home.svg" text = "Home" /></li>
+                    <li className="py-3 rounded-full hover:bg-hover" ><MenuTab to="/dashboard/sharedwithme" image = "/assets/icons/shared.svg" text = "Shared with me" /></li>
+                    <li className="py-3 rounded-full hover:bg-hover"><MenuTab to="/dashboard/notifications" image = "/assets/icons/notification.svg" text = "Notifications" /></li>
                     
                 </ul>
                     
@@ -69,7 +69,7 @@ export default function Menu(){
                 <h2 className="mb-8 font-semibold text-12px">Teams</h2>
                 <button onClick={openModal}>
                     <Image 
-                        src="../assets/icons/plus.svg"
+                        src="/assets/icons/plus.svg"
                         alt=""
                         width={15}
                         height={15}
@@ -86,8 +86,8 @@ export default function Menu(){
                     teams.map((team) => (
                         <li key={team.id} className="py-3 rounded-full hover:bg-hover">
                         <MenuTab
-                            to={`/dashboard/team/${team.id}`} // Adjust the path as needed
-                            image="../assets/icons/team.svg" // Assuming icon is a URL or relative path
+                            to={`/dashboard/team/${team.id}`} 
+                            image="/assets/icons/team.svg"
                             text={team.name}
                         />
                         </li>

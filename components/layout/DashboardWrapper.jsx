@@ -5,7 +5,7 @@ import SidePanel from "@components/dashboard/side_panel/SidePanel";
 export default function DashboardWrapper({ children }) {
   return (
     <div className="max-h-screen overflow-hidden">
-      <TabBar />
+      
       <Utils />
       <div className="flex">
         <div className="mt-10">

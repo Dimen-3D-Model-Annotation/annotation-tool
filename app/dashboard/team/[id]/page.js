@@ -1,5 +1,6 @@
 "use client";
 
+import DashboardWrapper from "@components/layout/DashboardWrapper";
 import { useState , useEffect } from "react";
 
 export default function Team() {
@@ -25,21 +26,16 @@ export default function Team() {
 
 
   return (
-    <div className="relative">
-    {/* Share button */}
-    <button
-      
-      className="absolute px-4 py-2 font-semibold text-white border rounded-full shadow-md border-gray bg-base top-8 right-8 hover:bg-hovergray focus:outline-none text-12px"
-    >
-      Share
-    </button>
+    <DashboardWrapper>
+      <div className="relative">
+        {/* Share button */}
+        <button className="absolute px-4 py-2 font-semibold text-white border rounded-full shadow-md border-gray bg-base top-8 right-8 hover:bg-hovergray focus:outline-none text-12px">
+          Share
+        </button>
 
-    {/* Your existing content */}
-    <div>
-      {/* Other content */}
-    </div>
-  </div>
-    
-    
+        {/* Your existing content */}
+        <div>{/* Other content */}</div>
+      </div>
+    </DashboardWrapper>
   );
 }

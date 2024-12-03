@@ -5,6 +5,7 @@ import { useState , useEffect } from "react";
 const Modal3 = ({ isOpen, onClose }) => {
     const [userId, setUserId] = useState(null);
     const [emails, setEmails] = useState('');
+    console.log(emails);
 
     useEffect(() => {
         const getCookie = (name) => {
@@ -42,7 +43,7 @@ const Modal3 = ({ isOpen, onClose }) => {
     
           const result = await response.json();
           console.log('Team created:', result);
-          onClose(); // Close the modal
+          onClose(); 
         } catch (error) {
           console.error('Error creating team:', error);
         }

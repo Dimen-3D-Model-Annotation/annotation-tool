@@ -1,5 +1,6 @@
 "use client";
 
+import DashboardWrapper from "@components/layout/DashboardWrapper";
 import { useState , useEffect } from "react";
 
 export default function SharedWithMe() {
@@ -20,9 +21,10 @@ export default function SharedWithMe() {
 
 
   return (
-    <div>
-        
-    </div>
+   
+    <DashboardWrapper>
+      
+    </DashboardWrapper>
     
     
   );

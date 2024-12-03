@@ -3,9 +3,10 @@
 import Account from "./Account";
 import Button from "./Button";
 import {useState} from 'react';
-import Modal from "@components/Modal";
-import Modal2 from "@components/Modal2";
+import Modal from "@components/modals/Modal";
+import Modal2 from "@components/modals/Modal2";
 import { usePathname } from 'next/navigation';
+import Dashboard from "@app/dashboard/page";
 
 
 export default function Utils(){
@@ -21,15 +22,29 @@ export default function Utils(){
     const closeModal2 = () => setIsModal2Open(false);
 
     let displayText = 'Home';
-    if (pathname === '/dashboard') {
-        displayText = 'Home';
-    } else if (pathname === '/dashboard/sharedwithme') {
-        displayText = 'Shared with Me';
-    } else if (pathname === '/dashboard/notifications') {
-        displayText = 'Notifications';
-    }
+    if (pathname === "/dashboard") {
+      displayText = "Home";
+    } else if (pathname === "/dashboard/sharedwithme") {
+      displayText = "Shared with Me";
+    } else if (pathname === "/dashboard/notifications") {
+      displayText = "Notifications";
+    } else if (pathname === "/dashboard/trash") {
+      displayText = "Archive";
+    } else if (pathname === "/dashboard/support") {
+      displayText = "Help & Support";
+    } else if (pathname === "/dashboard/account") {
+      displayText = "My Account";
+    } 
 
-    const hideAdditionalParts = pathname === '/dashboard/sharedwithme' || pathname === '/dashboard/notifications';
+
+
+    const hideAdditionalParts =
+      pathname === "/dashboard/sharedwithme" ||
+      pathname === "/dashboard/notifications" ||
+      pathname === "/dashboard/trash" ||
+      pathname === "/dashboard/support" ||
+      pathname === "/dashboard/team" ||
+      pathname === "/dashboard/account";
 
     
     return(
@@ -41,7 +56,7 @@ export default function Utils(){
                 </div>
                 {!hideAdditionalParts && (
                     <div>
-                        <Button icon="../assets/icons/plus.svg" text="New Folder" bg="rgba(211, 211, 211, 0.1)" onClick={openModal2} />
+                        <Button icon="/assets/icons/plus.svg" text="New Folder" bg="rgba(211, 211, 211, 0.1)" onClick={openModal2} />
                     </div>
                     )}
             </div>
@@ -55,10 +70,10 @@ export default function Utils(){
                     />
                 </div>
                 <div className="mx-4">
-                    <Button icon="../assets/icons/import.svg" text="Import" bg="rgba(211, 211, 211, 0.1)" />
+                    
                 </div>
                 <div>
-                    <Button icon="../assets/icons/plus.svg" text="Create" bg="rgb(106, 0, 255)" onClick={openModal1} />
+                    <Button icon="/assets/icons/plus.svg" text="Create" bg="rgb(106, 0, 255)" onClick={openModal1} />
                 </div>
                 </div>
             )}

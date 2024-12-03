@@ -22,23 +22,31 @@ export default function ProjectCard({name , projectId}) {
   
   
   return (
-    <Link href ={`http://localhost:3002/dashboard/project/14`} >
-       <div className="py-24 border-2 w-72 rounded-xl border-lightgray bg-hover hover:border-theme1"></div>
-        <div className="w-64 mt-4 font-semibold text-gray text-12px">
-          {name ? <p>{name}</p> : <p>Untitled</p>}
-          {/* {userId ? (
-            <p>User ID: {userId}</p>
-          ) : (
-            <p>No User ID found. Please log in.</p>
-          )} */}
-          <span className="font-medium text-10px">
-            
-          </span>
-        </div>
-      
+    <Link
+      href={`dashboard/project/${projectId}`}
+      passHref
+    >
+      <div
+        className="py-24 border-2 w-72 rounded-xl border-lightgray bg-hover hover:border-theme1"
+        
+        onClick={(e) => {
+          e.preventDefault();
+          window.open(
+            `dashboard/project/${projectId}`,
+            "_blank"
+          );
+        }}
+      ></div>
+      <div className="w-64 mt-4 font-semibold text-gray text-12px">
+        {name ? <p>{name}</p> : <p>Untitled</p>}
+        {/* {userId ? (
+      <p>User ID: {userId}</p>
+    ) : (
+      <p>No User ID found. Please log in.</p>
+    )} */}
+        <span className="font-medium text-10px"></span>
+      </div>
     </Link>
-   
-  
   );
 }
 
