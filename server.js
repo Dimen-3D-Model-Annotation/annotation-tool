@@ -160,80 +160,62 @@ app.get('/api/teams', async (req, res) => {
 
 
 
-  app.post('/api/teams', async (req, res) => {
-  const { name, userId, emails } = req.body;
-  console.log(req.body);
+  app.post("/api/teams", async (req, res) => {
+    const { name, userId, emails } = req.body;
 
-  if (!name || !userId) {
-    return res.status(400).json({ error: 'Team name and user ID are required' });
-  }
+    const client = await pool.connect();
 
-  const client = await pool.connect();
-  try {
-    await client.query('BEGIN');
+    try {
+      await client.query("BEGIN"); // Start a transaction
 
-    // Insert the team into the dimen.teams table
-    const result = await client.query(
-      'INSERT INTO dimen.teams (name, userid) VALUES ($1, $2) RETURNING id',
-      [name, userId]
-    );
-    const teamId = result.rows[0].id;
+      // Insert team into the 'teams' table
+      const teamResult = await client.query(
+        "INSERT INTO dimen.teams (name, userid) VALUES ($1, $2) RETURNING id",
+        [name, userId]
+      );
+      const teamId = teamResult.rows[0].id;
 
-    // Handle email invitations if emails are provided
-    if (emails) {
-      const emailList = emails.split(',').map((email) => email.trim());
+      // Split emails and insert them into 'team_users' table
+      const emailList = emails.split(",").map((email) => email.trim());
 
-      for (const email of emailList) {
-        // Insert the email directly into the dimen.team_users table
-        await client.query(
-          'INSERT INTO dimen.team_users (team_id, email, invitation_sts) VALUES ($1, $2, $3)',
-          [teamId, email, 'PENDING']
-        );
-      }
+      const insertTeamUsersQuery = `
+      INSERT INTO dimen.team_users (team_id, email, invitation_sts)
+      VALUES
+      ${emailList.map((_, idx) => `($1, $${idx + 2}, 'SENT')`).join(", ")}
+    `;
+      const emailParams = [teamId, ...emailList];
+
+      await client.query(insertTeamUsersQuery, emailParams);
+
+      await client.query("COMMIT"); // Commit the transaction
+      res.status(201).json({ message: "Team created successfully" });
+    } catch (err) {
+      await client.query("ROLLBACK"); // Rollback in case of error
+      console.error("Error creating team:", err);
+      res.status(500).json({ error: "Failed to create team" });
+    } finally {
+      client.release();
     }
+  });
 
-    await client.query('COMMIT');
-    res.status(201).json({ message: 'Team created and users invited' });
+app.get("/api/notifications", async (req, res) => {
+  const  userId  = req.query.userId;
+  if (!userId) return res.status(400).json({ error: "User ID is required" });
+
+  try {
+    //userId = parseInt(userId, 10);
+    const notifications = await db.query(
+      "SELECT * FROM dimen.team_users WHERE userid = $1 AND invitation_sts = 'SENT'",
+      [userId]
+    );
+
+    res.json(notifications.rows);
   } catch (error) {
-    await client.query('ROLLBACK');
-    console.error('Error creating team and inviting users:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  } finally {
-    client.release();
+    console.error("Error fetching notifications:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
-// Endpoint to handle file upload
-// app.post('/upload', upload.single('file'), async (req, res) => {
-//   const { originalname, path: tempPath, size } = req.file;
-//   const newFilePath = path.join(__dirname, 'uploads', originalname); 
-
-//   // Move file from temporary location to a permanent location
-//   fs.rename(tempPath, newFilePath, async (err) => {
-//     if (err) return res.status(500).send('Error uploading file');
-
-//     // Insert file metadata into the database
-//     try {
-//       await pool.query(
-//         'INSERT INTO files (name, path, size) VALUES ($1, $2, $3)',
-//         [originalname, newFilePath, size]
-//       );
-//       res.status(200).send('File uploaded and saved in database');
-//     } catch (err) {
-//       res.status(500).send('Error saving file metadata to database');
-//     }
-//   });
-// });
-
-// // Endpoint to fetch all uploaded files
-// app.get('/files', async (req, res) => {
-//   try {
-//     const result = await pool.query('SELECT * FROM files');
-//     res.json(result.rows);
-//   } catch (err) {
-//     res.status(500).send('Error fetching files from database');
-//   }
-// })
 
 
   const merchantSecret = "NDA3OTE4Nzk2MzExNTk2Nzg5ODIzOTU0OTQxNjcyODI0ODE1Mjcw"; // Replace with your Merchant Secret from PayHere

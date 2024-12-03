@@ -59,16 +59,7 @@ const NewModal = ({ isOpen, onClose }) => {
           Accept Invitation
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex flex-col">
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Enter folder name"
-              defaultValue="Untitled"
-              className="px-4 py-3 text-white placeholder-gray-400 bg-gray-800 border-none rounded text-14px focus:ring-2 focus:ring-theme1"
-            />
-          </div>
+
           <div className="flex justify-between gap-4 mt-6">
             <button
               type="button"
