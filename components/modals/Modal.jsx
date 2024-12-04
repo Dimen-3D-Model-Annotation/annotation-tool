@@ -34,8 +34,8 @@ const Modal = ({ isOpen, onClose }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Ensure cookies are sent with the request
-        body: JSON.stringify({ name, userId }), // Include userId in the request body
+        credentials: 'include',
+        body: JSON.stringify({ name, userId }),
       });
 
       if (!response.ok) {
@@ -44,7 +44,7 @@ const Modal = ({ isOpen, onClose }) => {
 
       const result = await response.json();
       console.log('Project created:', result);
-      onClose(); // Close the modal
+      onClose(); 
       router.push(`/dashboard`);
     } catch (error) {
       console.error('Error creating project:', error);

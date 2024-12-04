@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 import DashboardWrapper from "@components/layout/DashboardWrapper";
-import NotificationModal from "@components/modals/NotificationModal"; // Import Modal2 component
+import NotificationModal from "@components/modals/NotificationModal"; 
 
 export default function Notifications() {
   const [userId, setUserId] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Track modal state
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
@@ -47,11 +47,11 @@ export default function Notifications() {
             className="flex items-center gap-4 p-4 mt-8 text-white rounded-lg shadow-md cursor-pointer bg-hover hover:bg-gray-600 text-12px"
             onClick={() => handleNotificationClick(notification)}
           >
-            {/* Icon */}
+          
             <img
-              src="/assets/icons/messages.svg" // Update with the correct icon filename
+              src="/assets/icons/messages.svg" 
               alt="Notification Icon"
-              className="w-6 h-6" // Adjust the size of the icon
+              className="w-6 h-6" 
             />
             {/* Notification message */}
             <span>{notification.message}</span>

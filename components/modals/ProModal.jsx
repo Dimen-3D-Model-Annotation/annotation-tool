@@ -15,27 +15,40 @@ const UpgradeModal = ({ isOpen, onClose }) => {
    }, []);
 
    const handlePayment = () => {
-     // Define the payment details
+     
      const payment = {
-       sandbox: true, // Use false for production
-       merchant_id: "1225803", // Replace with your Merchant ID
-       return_url: undefined, // Optional, redirect back after payment
-       cancel_url: undefined, // Optional, redirect if payment is canceled
-       notify_url: "http://localhost:3501/api/payment-notify", // Your server endpoint
-       order_id: "DIMEN12345", // Unique order ID
-       items: "Premium Subscription", // Item name
-       amount: "9.99", // Amount
-       currency: "USD", // Currency code
-       first_name: "John", // Customer's first name
-       last_name: "Doe", // Customer's last name
-       email: "john.doe@example.com", // Customer's email
-       phone: "0771234567", // Customer's phone
-       address: "No.1, Main Street", // Customer's address
-       city: "Colombo", // Customer's city
-       country: "Sri Lanka", // Customer's country
+       sandbox: true,
+       
+       merchant_id: "1225803",
+       
+       return_url: undefined, 
+       cancel_url: undefined, 
+       
+       notify_url: "http://localhost:3501/api/payment-notify",
+       
+       order_id: "DIMEN12345", 
+       
+       items: "Premium Subscription",
+       
+       amount: "9.99", 
+       
+       currency: "USD", 
+       
+       first_name: "John", 
+       
+       last_name: "Doe", 
+       
+       email: "john.doe@example.com", 
+       
+       phone: "0771234567", 
+       
+       address: "No.1, Main Street", 
+       city:"Colombo",
+       
+       country: "Sri Lanka", 
      };
 
-     // Check if PayHere is available and start the payment process
+   
      if (window.payhere) {
        window.payhere.startPayment(payment);
      } else {

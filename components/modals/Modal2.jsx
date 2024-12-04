@@ -34,8 +34,8 @@ const Modal2 = ({ isOpen, onClose }) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Ensure cookies are sent with the request
-        body: JSON.stringify({ name, userId }), // Include userId in the request body
+        credentials: 'include',
+        body: JSON.stringify({ name, userId }), 
       });
 
       if (!response.ok) {

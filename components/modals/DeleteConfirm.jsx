@@ -7,11 +7,11 @@ const DeleteConfirm = ({ isOpen, onClose, onDelete }) => {
 
   const handleDelete = async () => {
     try {
-      // Call the provided onDelete function for delete operation
+      
       await onDelete();
 
-      onClose(); // Close the modal after deletion
-      router.push(`/dashboard`); // Redirect to the dashboard or relevant page
+      onClose(); 
+      router.push(`/dashboard`); 
     } catch (error) {
       console.error("Error deleting item:", error);
     }

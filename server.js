@@ -166,9 +166,9 @@ app.get('/api/teams', async (req, res) => {
     const client = await pool.connect();
 
     try {
-      await client.query("BEGIN"); // Start a transaction
+      await client.query("BEGIN"); 
 
-      // Insert team into the 'teams' table
+      
       const teamResult = await client.query(
         "INSERT INTO dimen.teams (name, userid) VALUES ($1, $2) RETURNING id",
         [name, userId]
@@ -187,10 +187,10 @@ app.get('/api/teams', async (req, res) => {
 
       await client.query(insertTeamUsersQuery, emailParams);
 
-      await client.query("COMMIT"); // Commit the transaction
+      await client.query("COMMIT"); 
       res.status(201).json({ message: "Team created successfully" });
     } catch (err) {
-      await client.query("ROLLBACK"); // Rollback in case of error
+      await client.query("ROLLBACK"); 
       console.error("Error creating team:", err);
       res.status(500).json({ error: "Failed to create team" });
     } finally {
@@ -218,9 +218,9 @@ app.get("/api/notifications", async (req, res) => {
 
 
 
-  const merchantSecret = "NDA3OTE4Nzk2MzExNTk2Nzg5ODIzOTU0OTQxNjcyODI0ODE1Mjcw"; // Replace with your Merchant Secret from PayHere
+  const merchantSecret = "NDA3OTE4Nzk2MzExNTk2Nzg5ODIzOTU0OTQxNjcyODI0ODE1Mjcw"; 
 
-  // Payment notification handler
+ 
   app.post("/api/payment-notify", (req, res) => {
     const {
       merchant_id,
@@ -232,7 +232,7 @@ app.get("/api/notifications", async (req, res) => {
       md5sig,
     } = req.body;
 
-    // Generate hash using the merchant secret
+   
     const generatedHash = crypto
       .createHash("md5")
       .update(
@@ -241,7 +241,7 @@ app.get("/api/notifications", async (req, res) => {
       .digest("hex")
       .toUpperCase();
 
-    // Validate hash and status code
+    
     if (generatedHash === md5sig && status_code === "2") {
       console.log("Payment verified successfully:", req.body);
       res.sendStatus(200);

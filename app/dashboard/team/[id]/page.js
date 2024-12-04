@@ -2,7 +2,7 @@
 
 import DashboardWrapper from "@components/layout/DashboardWrapper";
 import { useState, useEffect } from "react";
-import Share from "@components/modals/Share"; // Import the Share component
+import Share from "@components/modals/Share"; 
 
 export default function Team() {
   const [userId, setUserId] = useState(null);
@@ -21,7 +21,7 @@ export default function Team() {
     const id = getCookie("userId");
     setUserId(id);
 
-    // Mock users
+    
     const mockUsers = [
       { id: 1, name: "vishwanthieherath@gmail.com", permission: "view" },
       { id: 2, name: "nufdhamacky@gmail.com", permission: "view" },
@@ -39,13 +39,13 @@ export default function Team() {
 
   const handleUpdate = () => {
     console.log("Updated permissions:", users);
-    setIsModalOpen(false); // Close modal after update
+    setIsModalOpen(false); 
   };
 
   return (
     <DashboardWrapper>
       <div className="relative">
-        {/* Share button */}
+       
         <button
           className="absolute px-4 py-2 font-semibold text-white border rounded-full shadow-md border-gray bg-base top-8 right-8 hover:bg-hovergray focus:outline-none text-12px"
           onClick={() => setIsModalOpen(true)}
@@ -62,8 +62,7 @@ export default function Team() {
           onUpdate={handleUpdate}
         />
 
-        {/* Your existing content */}
-        <div>{/* Other content */}</div>
+      
       </div>
     </DashboardWrapper>
   );
