@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-function Model({ fileUrl, handleClick }) {
+function Model({ fileUrl, handleClick, model_id }) {
 
   const [model, setModel] = useState(null);
   const [meshes, setMeshes] = useState([]);
@@ -41,7 +41,7 @@ function Model({ fileUrl, handleClick }) {
   const handlePointerDown = (e) => {
     e.stopPropagation();
     const point = e.point; // The world-space 3D coordinates
-    handleClick(point, e.face.normal); // Pass the normal vector for visibility checks
+    handleClick(point, e.face.normal, model_id); // Pass the normal vector for visibility checks
   };
 
   // const changeColor = (mesh, color) => {

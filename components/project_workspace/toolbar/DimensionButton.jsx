@@ -1,54 +1,54 @@
 import Image from "next/image";
-import comment from "@public/assets/icons/comment.svg";
+import dimension from "@public/assets/icons/dimension.svg";
 
-import { useContext, useState } from "react";
+import { use, useState } from "react";
+import { useContext } from "react";
 import { AnnotationContext } from "@contexts/AnnotationContext";
 
-const CommentButton = () => {
+const DimensionButton = () => {
+  const { setClickedPoint } = useContext(AnnotationContext);
+
+  const { dimensionMode, setDimensionMode } = useContext(AnnotationContext);
   const {
-    setClickedPoint,
-    commentMode,
     setCommentMode,
-    setTextMode,
     setMentionMode,
-    setDimensionMode,
+    setTextMode,
     setColorPickerMode,
     setMoveMode,
   } = useContext(AnnotationContext);
 
-  const toggleCommentMode = () => {
-    const newCommentMode = !commentMode;
+  const toggleDimensionMode = () => {
+    const newDimensionMode = !dimensionMode;
 
-    // Set commentMode to the toggled value
-    setCommentMode(newCommentMode);
+    setDimensionMode(newDimensionMode);
+    
 
-    // Reset all other modes to false
-    if (newCommentMode) {
-      setTextMode(false);
+    if (newDimensionMode) {
+      setCommentMode(false);
       setMentionMode(false);
-      setDimensionMode(false);
+      setTextMode(false);
       setColorPickerMode(false);
       setMoveMode(false);
+
     }
 
-    // Reset clickedPoint when toggling
     setClickedPoint(null);
   };
 
   return (
     <button
-      onClick={toggleCommentMode}
+      onClick={toggleDimensionMode}
       className={`flex relative group justify-center items-center mx-2 p-1 cursor-pointer 
               ${
-                commentMode ? "bg-zinc-800" : "hover:bg-zinc-800"
+                dimensionMode ? "bg-zinc-800" : "hover:bg-zinc-800"
               } rounded-lg h-[32px] w-[32px]`}
     >
-      <i className="bi bi-chat-fill text-[18px] text-zinc-500"></i>
+      <i className="bi bi-rulers text-[18px] text-zinc-500"></i>
       <span className="absolute top-[36px] mb-2 px-2 py-[2px] text-[10px] text-zinc-400 bg-zinc-700 rounded-md opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-        Comment
+        Dimension
       </span>
     </button>
   );
 };
 
-export default CommentButton;
+export default DimensionButton;
