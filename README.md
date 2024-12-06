@@ -1,7 +1,7 @@
 ## Dimen
 #### A collaborative 3D model annotation tool
 
-### Admin Dashboard
+### Annotation Tool
 
 1. Go to the folder named frontend-apps
     `cd frontend-apps`
