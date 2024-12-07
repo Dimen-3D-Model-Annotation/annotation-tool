@@ -1,5 +1,6 @@
 import Image from "next/image";
 import add from "@public/assets/icons/add.svg";
+import { MODEL_BASE_URL, ANNOTATION_BASE_URL, SCENE_BASE_URL } from "@config/config";
 
 import axios from "axios";
 
@@ -40,7 +41,7 @@ const Objects = ({ objects, objectsName }) => {
         try {
           // Fetch models from the backend
           const response = await axios.get(
-            `http://localhost:3500/api/models/${id}`
+            `${MODEL_BASE_URL}/${id}`
           );
 
           // console.log("Scene Models", response.data);
@@ -86,7 +87,7 @@ const Objects = ({ objects, objectsName }) => {
       const fetchAnnotations = async (id) => {
         try {
           const modelAnnotations = await axios.get(
-            `http://localhost:3500/api/annotations/${id}`
+            `${ANNOTATION_BASE_URL}/${id}`
           ); // Replace with dynamic model_id
           addAnnotation(modelAnnotations.data); // Add fetched annotations to state
         } catch (error) {
@@ -119,7 +120,7 @@ const Objects = ({ objects, objectsName }) => {
       return;
     }
 
-    const response = await axios.post("http://localhost:3500/api/scenes", {
+    const response = await axios.post(`${SCENE_BASE_URL}`, {
       scene_name: value,
     });
 

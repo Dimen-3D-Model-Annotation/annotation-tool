@@ -1,5 +1,6 @@
 import Image from "next/image";
 import add from "@public/assets/icons/add.svg";
+import { SCENE_BASE_URL } from "@config/config";
 
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
@@ -17,7 +18,7 @@ const LeftSidePanel = () => {
   useEffect(() => {
     const fetchScenes = async () => {
       try {
-        const response = await axios.get(`http://localhost:3500/api/scenes`);
+        const response = await axios.get(`${SCENE_BASE_URL}`);
 
         // console.log("Scenes:", response.data);
 

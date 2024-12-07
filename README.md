@@ -12,5 +12,5 @@
 4. Install node modules
     `npm install`
 5. Run the server
-    `npm run dev -- -p 3002`
+    `npm run dev -- -p 3003`
 
