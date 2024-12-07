@@ -14,8 +14,9 @@ import Annotations from "./Annotations";
 
 import io from "socket.io-client";
 import axios from "axios";
+import { SOCKET_BASE_URL, MODEL_BASE_URL, ANNOTATION_BASE_URL } from "@config/config";
 
-const socket = io("http://localhost:3500");
+const socket = io(`${SOCKET_BASE_URL}`); // Connect to the Socket.IO server
 
 const CanvasArea = () => {
 
@@ -38,7 +39,7 @@ const CanvasArea = () => {
     const fetchModels = async () => {
       try {
         const sceneModels = await axios.get(
-          `http://localhost:3500/api/models/${activeScene}`
+          `${MODEL_BASE_URL}/${activeScene}`
         ); // Replace with dynamic model_id
         addModel(sceneModels.data); // Add fetched annotations to state
       } catch (error) {
@@ -52,7 +53,7 @@ const CanvasArea = () => {
     const fetchAnnotations = async () => {
       try {
         const modelAnnotations = await axios.get(
-          `http://localhost:3500/api/annotations/${activeScene}`
+          `${ANNOTATION_BASE_URL}/${activeScene}`
         ); // Replace with dynamic model_id
         addAnnotation(modelAnnotations.data); // Add fetched annotations to state
 
@@ -95,7 +96,7 @@ const CanvasArea = () => {
       try {
         // Send the annotation data to the backend
         const response = await axios.post(
-          "http://localhost:3500/api/annotations",
+          `${ANNOTATION_BASE_URL}`,
           {
             position: clickedPoint, // Use the clicked position
             normal: clickedNormal,
