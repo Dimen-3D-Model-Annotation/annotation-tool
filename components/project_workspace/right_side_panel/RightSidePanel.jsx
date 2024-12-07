@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { SceneContext } from "@contexts/SceneContext";
 import AnnotationDetails from "../right_side_panel/AnnotationDetails";
+import { SCENE_BASE_URL } from "@config/config";
 
 const RightSidePanel = () => {
   const { scenes, addScene } = useContext(SceneContext);
@@ -16,7 +17,7 @@ const RightSidePanel = () => {
   useEffect(() => {
     const fetchScenes = async () => {
       try {
-        const response = await axios.get(`http://localhost:3500/api/scenes`);
+        const response = await axios.get(`${SCENE_BASE_URL}`);
 
         // console.log("Scenes:", response.data);
 
