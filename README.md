@@ -1,7 +1,7 @@
 ## Dimen
 #### A collaborative 3D model annotation tool
 
-### Admin Dashboard
+### Annotation Tool
 
 1. Go to the folder named frontend-apps
     `cd frontend-apps`
@@ -12,5 +12,5 @@
 4. Install node modules
     `npm install`
 5. Run the server
-    `npm run dev -- -p 3002`
+    `npm run dev -- -p 3003`
 

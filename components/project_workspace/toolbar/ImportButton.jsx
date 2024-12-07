@@ -7,7 +7,7 @@ import { SceneContext } from "@contexts/SceneContext";
 import upload from "@api/ModelUpload";
 import axios from "axios";
 
-import importButton from "@public/assets/icons/import.svg";
+import { SCENE_BASE_URL } from "@config/config";
 
 const ImportButton = () => {
 
@@ -26,7 +26,7 @@ const ImportButton = () => {
 
     try {
 
-      const scene = await axios.post("http://localhost:3500/api/scenes", {
+      const scene = await axios.post(`${SCENE_BASE_URL}`, {
         scene_name: selectedFile.name.split(".")[0],
       });
 
