@@ -12,5 +12,6 @@
 4. Install node modules
     `npm install`
 5. Run the server
-    `npm run dev -- -p 3003`
+    `npm run dev -- -p 3005`
+6. Create .env file based on .env.example
 
